@@ -1,5 +1,6 @@
 ﻿using GameCatalog.Models;
 using GameCatalog.Services;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,11 +11,15 @@ namespace GameCatalog.Repository
 {
 	public class UserRepository : IUserRepository
 	{
-		private readonly string _path = $"./Data/User.data";
+		private readonly string _filePath = "/User.bin";
+		private readonly string _folderPath;
+		private readonly string _path;
 
-		public UserRepository()
+		public UserRepository(IConfiguration configuration)
 		{
-			InitializeRepositoryFile(); 
+			_folderPath = configuration["RepositoryPath"];
+			_path = _folderPath + _filePath;
+			InitializeRepositoryFile();
 		}
 
 		public void Delete(int id)
@@ -104,6 +109,12 @@ namespace GameCatalog.Repository
 
 		private void InitializeRepositoryFile()
 		{
+
+			if (!Directory.Exists(_folderPath))
+			{
+				Directory.CreateDirectory(_folderPath);
+			}
+
 			if (!File.Exists(_path))
 			{
 				FileStream fileStream = new FileStream(_path, FileMode.Create);

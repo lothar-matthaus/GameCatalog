@@ -12,20 +12,35 @@ namespace GameCatalog.Repository
 {
 	public class GameRepository : IGameRepository
 	{
+		private readonly string _filePath = "/Game.bin";
+		private readonly string _folderPath;
 		private readonly string _path;
 
 		public GameRepository(IConfiguration configuration)
 		{
-			_path = configuration["RepositoryPath"] + "/Game.data";
+			_folderPath = configuration["RepositoryPath"];
+			_path = _folderPath + _filePath;
 			InitializeRepositoryFile();
 		}
 
 		private void InitializeRepositoryFile()
 		{
-			if (!File.Exists(_path))
+			try
 			{
-				FileStream fileStream = new FileStream(_path, FileMode.Create);
-				fileStream.Close();
+				if (!Directory.Exists(_folderPath))
+				{
+					Directory.CreateDirectory(_folderPath);
+				}
+
+				if (!File.Exists(_path))
+				{
+					FileStream fileStream = new FileStream(_path, FileMode.Create);
+					fileStream.Close();
+				}
+			}
+			catch
+			{
+				throw new IOException("Erro ao criar criar o arquivo.");
 			}
 		}
 
