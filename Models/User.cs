@@ -20,9 +20,12 @@ namespace GameCatalog.Models
 		[MinLength(8, ErrorMessage = "A senha deve possuir ao menos 8 caracteres.")]
 		public string Password { get; set; }
 
+		public DateTime CreationDate { get; set; }
+
 		public User()
 		{
 			this.Id = new Random().Next(100000, 999999);
+			this.CreationDate = DateTime.Now;
 		}
 	}
 }
