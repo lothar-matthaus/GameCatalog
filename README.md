@@ -50,18 +50,18 @@ Json de atualização:
     "string"
   ],
   "releaseDate": "2021-12-12T18:12:45.465Z",
-  "creationDate": "2021-12-12T18:12:45.465Z"
 }
 ~~~
 ---
 ### User (Usuário)
 Propriedades:
-| Nome da Propriedade | Tipo   | Descrição                          |
-|---------------------|--------|------------------------------------|
-| Id                  | int    | Identificador único                |
-| Name                | string | Nome do usuário                    |
-| Email               | string | E-mail de identificação do usuário |
-| Password            | string | Senha de acesso do usuário         |
+| Nome da Propriedade | Tipo   | Descrição                            |
+|---------------------|--------|--------------------------------------|
+| Id                  |  int     | Identificador único                |
+| Name                |  string  | Nome do usuário                    |
+| Email               |  string  | E-mail de identificação do usuário |
+| Password            |  string  | Senha de acesso do usuário         |
+| CreationDate        | DateTime | Senha de acesso do usuário         |
 ---
 Json de geração:
 ~~~json
