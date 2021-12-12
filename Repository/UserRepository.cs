@@ -81,24 +81,33 @@ namespace GameCatalog.Repository
 			FileStream fileStream = null;
 			StreamWriter streamWriter = null;
 
-			try
+			User result = Get(user.Email);
+
+			if (result != null)
 			{
-				fileStream = new(_path, FileMode.Append, FileAccess.Write);
-				streamWriter = new(fileStream, Encoding.UTF8);
-
-				streamWriter.WriteLine(JsonSerializer.Serialize<User>(user));
-
-				fileStream.Flush();
-				streamWriter.Close();
-
-				return user.Id;
+				throw new Exception($"Já existe um usuário cadastrado com o e-mail '{user.Email}' informado.");
 			}
-			catch (IOException ex)
+			else
 			{
-				fileStream.Flush();
-				streamWriter.Close();
+				try
+				{
+					fileStream = new(_path, FileMode.Append, FileAccess.Write);
+					streamWriter = new(fileStream, Encoding.UTF8);
 
-				throw new IOException(ex.Message);
+					streamWriter.WriteLine(JsonSerializer.Serialize<User>(user));
+
+					fileStream.Flush();
+					streamWriter.Close();
+
+					return user.Id;
+				}
+				catch (IOException ex)
+				{
+					fileStream.Flush();
+					streamWriter.Close();
+
+					throw new IOException(ex.Message);
+				}
 			}
 		}
 

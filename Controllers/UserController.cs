@@ -76,23 +76,37 @@ namespace GameCatalog.Controllers
 		[Route("GetByEmail")]
 		public IActionResult Get(string email)
 		{
-			User user = _userRepository.Get(email);
+			try
+			{
+				User user = _userRepository.Get(email);
 
-			if(user != null)
-			{
-				return Ok(new {
-					Success = true,
-					Message = $"Usuário '{user.Name}' foi encontrado."
-				});
+				if (user != null)
+				{
+					return Ok(new
+					{
+						Success = true,
+						Message = $"Usuário '{user.Name}' foi encontrado."
+					});
+				}
+				else
+				{
+					return Ok(new
+					{
+						Success = false,
+						Message = $"Não foi encontrado usuários com o E-Mail '{email}' informado."
+					});
+				}
 			}
-			else
+			catch (Exception ex)
 			{
-				return Ok(new
+				return BadRequest(new
 				{
 					Success = false,
-					Message = $"Não foi encontrado usuários com o E-Mail '{email}' informado."
+					Message = ex.Message
 				});
 			}
+
+
 		}
 
 		[HttpPost]
@@ -102,14 +116,26 @@ namespace GameCatalog.Controllers
 
 			if (ModelState.IsValid)
 			{
-				_userRepository.Save(user);
-
-				return Ok(new
+				try
 				{
-					Success = true,
-					Message = $"O usuário '{user.Name}' foi cadastrado com sucesso.",
-					Id = user.Id
-				});
+					_userRepository.Save(user);
+
+					return Ok(new
+					{
+						Success = true,
+						Message = $"O usuário '{user.Name}' foi cadastrado com sucesso.",
+						Id = user.Id
+					});
+				}
+				catch (Exception ex)
+				{
+					return BadRequest(new
+					{
+						Success = false,
+						Message = ex.Message,
+						StatusCode = 400
+					});
+				}
 			}
 			else
 			{

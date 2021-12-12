@@ -28,6 +28,7 @@ namespace GameCatalog.Models
 		public Game()
 		{
 			this.Id = new Random().Next(100000, 999999);
+			this.CreationDate = DateTime.Now;
 		}
 	}
 }
