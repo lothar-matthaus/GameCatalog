@@ -76,7 +76,6 @@ namespace GameCatalog.Repository
 				streamReader.Close();
 
 				return gameList;
-
 			}
 			catch (Exception ex)
 			{
