@@ -19,24 +19,31 @@ Esta API foi desenvolvida pra a disciplina **Desenvolvimento de Software Para We
 
 ### Game (Jogo)
 Propriedades:
-| Nome da Propriedade | Tipo     | Descrição                        |
-|---------------------|----------|----------------------------------|
-| Id                  | int      | Identificador único              |
-| Name                | string   | Título do Jogo                   |
-| Description         | string   | Descrição do título              |
-| ReleaseDate         | DateTime | Data de Lançamento do Jogo       |
-| CreationDate        | DateTime | Data que o título foi cadastrado |
+| Nome da Propriedade | Tipo     | Descrição                        |Necessidade       |
+|---------------------|----------|----------------------------------|----------------- |
+| Id                  | int      | Identificador único              | Opcional         |
+| Name                | string   | Título do Jogo                   | Obrigatório      |
+| Description         | string   | Descrição do título              | Obrigatório      |
+| CoverImgUrl         | string   | Imagem de capa do jogo           | Obrigatório      |
+| SlideImgUrl         | string   | Imagens de apresentação do jogo  | Obrigatório      |
+| ReleaseDate         | DateTime | Data de Lançamento do Jogo       | Obrigatório      |
+| CreationDate        | DateTime | Data que o título foi cadastrado | Opcional         |
 ---
 Json de geração:
 ~~~ json
 {
+  "id": 0,
   "name": "string",
   "description": "string",
   "categories": [
     "string"
   ],
-  "releaseDate": "2021-12-12T18:12:45.465Z",
-  "creationDate": "2021-12-12T18:12:45.465Z"
+  "coverImgUrl": "string",
+  "slideImgUrl": [
+    "string"
+  ],
+  "releaseDate": "2021-12-13T01:31:43.851Z",
+  "creationDate": "2021-12-13T01:31:43.851Z"
 }
 ~~~
 ---
@@ -49,7 +56,12 @@ Json de atualização:
   "categories": [
     "string"
   ],
-  "releaseDate": "2021-12-12T18:12:45.465Z",
+  "coverImgUrl": "string",
+  "slideImgUrl": [
+    "string"
+  ],
+  "releaseDate": "2021-12-13T01:31:43.851Z",
+  "creationDate": "2021-12-13T01:31:43.851Z"
 }
 ~~~
 ---
@@ -61,17 +73,29 @@ Propriedades:
 | Name                |  string  | Nome do usuário                    |
 | Email               |  string  | E-mail de identificação do usuário |
 | Password            |  string  | Senha de acesso do usuário         |
-| CreationDate        | DateTime | Senha de acesso do usuário         |
+| CreationDate        | DateTime | Data de Cadastro do usuário        |
 ---
 Json de geração:
 ~~~json
 {
+  "id": 0,
   "name": "string",
   "email": "user@example.com",
-  "password": "string"
+  "password": "string",
+  "creationDate": "2021-12-13T01:32:30.371Z"
 }
 ~~~
 ---
+Jsom de atualização
+~~~json
+{
+  "id": 0,
+  "name": "string",
+  "email": "user@example.com",
+  "password": "string",
+  "creationDate": "2021-12-13T01:32:30.371Z"
+}
+~~~
 
 # Funcionamento
 O funcionamento da API é simples e direto. Há uma necessidade de se estar cadastrado no sistema para poder se utilizar dos métodos **POST, PATCH e DELETE**.

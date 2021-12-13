@@ -68,15 +68,28 @@ namespace GameCatalog.Controllers
 			{
 				try
 				{
-					_gameRepository.Update(game);
+					bool wasUpdated = _gameRepository.Update(game);
 
-					return Ok(new
+					if (wasUpdated)
 					{
-						Success = true,
-						Message = $"O título {0} foi atualizado com sucesso.",
-						game.Name,
-						Id = game.Id
-					});
+						return Ok(new
+						{
+							Success = true,
+							Message = $"O título {0} foi atualizado com sucesso.",
+							game.Name,
+							Id = game.Id
+						});
+					}
+					else
+					{
+						return BadRequest(new
+						{
+							Success = false,
+							Message = $"Não foi possível atualizar o título '{game.Name}'. Verifique as informações corretamente.",
+							Id = game.Id
+						});
+					}
+					
 				}
 				catch (Exception ex)
 				{
@@ -95,8 +108,6 @@ namespace GameCatalog.Controllers
 					Message = ModelState.GetValidationState("errors")
 				});
 			}
-
-
 		}
 
 		[AllowAnonymous]
@@ -151,7 +162,7 @@ namespace GameCatalog.Controllers
 					return Ok(new
 					{
 						Success = true,
-						Message = "O jogo foi cadastrado com sucesso.",
+						Message = $"O jogo foi {game.Name} cadastrado com sucesso.",
 						Id = game.Id
 					});
 				}
@@ -160,7 +171,7 @@ namespace GameCatalog.Controllers
 					return BadRequest(new
 					{
 						Message = ex.Message,
-						StatusCode = BadRequest().StatusCode
+						StatusCode = 400
 					});
 				}
 			}
@@ -169,7 +180,7 @@ namespace GameCatalog.Controllers
 				return BadRequest(new
 				{
 					Message = ModelState.GetFieldValidationState("erros"),
-					status = BadRequest().StatusCode
+					status = 400
 				});
 			}
 		}

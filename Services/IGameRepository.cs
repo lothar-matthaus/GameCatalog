@@ -8,7 +8,7 @@ namespace GameCatalog.Services
 	{
 		int Save(Game game);
 		void Delete(int id);
-		void Update(Game game);
+		bool Update(Game game);
 
 		Game Get(int id);
 		List<Game> GetAll();

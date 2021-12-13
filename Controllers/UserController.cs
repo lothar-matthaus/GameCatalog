@@ -109,6 +109,57 @@ namespace GameCatalog.Controllers
 
 		}
 
+		[Authorize]
+		[HttpPatch]
+		[Route("Update")]
+		public IActionResult Patch(User user)
+		{
+			TryValidateModel(user);
+
+			if (ModelState.IsValid)
+			{
+				try
+				{
+					bool wasUpdated = _userRepository.Update(user);
+
+					if (wasUpdated)
+					{
+						return Ok(new
+						{
+							Success = true,
+							Message = $"O usuário {user.Name} foi atualizado com sucesso.",
+							Id = user.Id
+						});
+					}
+					else
+					{
+						return BadRequest(new
+						{
+							Success = false,
+							Message = $"Não foi possível atualizar o título '{user.Name}'. Verifique as informações corretamente.",
+							Id = user.Id
+						});
+					}
+				}
+				catch (Exception ex)
+				{
+					return BadRequest(new
+					{
+						Success = false,
+						Message = ex.Message
+					});
+				}
+			}else
+			{
+				return BadRequest(new
+				{
+					Success = false,
+					Message = "As informações informadas estão inválidas.",
+					Errors = ModelState.Values.SelectMany(errors => errors.Errors)
+				});
+			}
+		}
+
 		[HttpPost]
 		public IActionResult Post(User user)
 		{

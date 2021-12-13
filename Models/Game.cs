@@ -20,6 +20,12 @@ namespace GameCatalog.Models
 		[MinLength(1, ErrorMessage = "O jogo deve possuir ao menos uma categoria.")]
 		public ICollection<string> Categories { get; set; }
 
+		[Required(ErrorMessage = "O jogo deve possuir uma imagem de capa.")]
+		public string CoverImgUrl { get; set; }
+
+		[Required(ErrorMessage = "O jogo deve possuir uma ou mais imagens de apresentação")]
+		public ICollection<string> SlideImgUrl { get; set; }
+
 		[Required(ErrorMessage = "O jogo deve ter uma data de lançamento.")]
 		public DateTime ReleaseDate { get; set; }
 

@@ -7,10 +7,9 @@ namespace GameCatalog.Services
 	{
 		int Save(User user);
 		void Delete(int id);
-		void Update(User user);
+		bool Update(User user);
 
 		User Get(int id);
 		User Get(string email);
-		List<User> GetAll();
 	}
 }

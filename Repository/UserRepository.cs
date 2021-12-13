@@ -73,7 +73,30 @@ namespace GameCatalog.Repository
 
 		public List<User> GetAll()
 		{
-			throw new System.NotImplementedException();
+			FileStream fileStream = null;
+			StreamReader streamReader = null;
+			List<User> userList = new List<User>();
+
+			try
+			{
+				fileStream = new(_path, FileMode.Open, FileAccess.Read);
+				streamReader = new(fileStream, Encoding.UTF8);
+
+				while (!streamReader.EndOfStream)
+					userList.Add(JsonSerializer.Deserialize<User>(streamReader.ReadLine()));
+
+				fileStream.Flush();
+				streamReader.Close();
+
+				return userList;
+			}
+			catch (Exception ex)
+			{
+				fileStream.Flush();
+				streamReader.Close();
+
+				throw new IOException(ex.Message);
+			}
 		}
 
 		public int Save(User user)
@@ -111,9 +134,50 @@ namespace GameCatalog.Repository
 			}
 		}
 
-		public void Update(User user)
+		public bool Update(User user)
 		{
-			throw new System.NotImplementedException();
+			FileStream fileStream = null;
+			StreamWriter streamWriter = null;
+
+			List<User> userList = GetAll();
+			bool canBeUpdate = false;
+
+			for (int index = 0; index < userList.Count; index++)
+			{
+				if (userList[index].Id == user.Id)
+				{
+					userList[index] = user;
+					canBeUpdate = true;
+				}
+			}
+
+			if (canBeUpdate)
+			{
+				try
+				{
+					fileStream = new(_path, FileMode.Truncate, FileAccess.Write);
+					streamWriter = new(fileStream, Encoding.UTF8);
+
+					foreach (User item in userList)
+						streamWriter.WriteLine(JsonSerializer.Serialize<User>(item));
+
+					fileStream.Flush();
+					streamWriter.Close();
+
+					return canBeUpdate;
+				}
+				catch (Exception ex)
+				{
+					fileStream.Flush();
+					streamWriter.Close();
+
+					throw new IOException(ex.Message);
+				}
+			}
+			else
+			{
+				return canBeUpdate;
+			}
 		}
 
 		private void InitializeRepositoryFile()
@@ -130,7 +194,5 @@ namespace GameCatalog.Repository
 				fileStream.Close();
 			}
 		}
-
-
 	}
 }

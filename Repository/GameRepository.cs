@@ -147,29 +147,38 @@ namespace GameCatalog.Repository
 		{
 			FileStream fileStream = null;
 			StreamWriter streamWriter = null;
-
-			try
+			
+			Game result = Get(game.Id);
+			
+			if(result is null)
 			{
-				fileStream = new(_path, FileMode.Append, FileAccess.Write);
-				streamWriter = new(fileStream, Encoding.UTF8);
+				try
+				{
+					fileStream = new(_path, FileMode.Append, FileAccess.Write);
+					streamWriter = new(fileStream, Encoding.UTF8);
 
-				streamWriter.WriteLine(JsonSerializer.Serialize<Game>(game));
+					streamWriter.WriteLine(JsonSerializer.Serialize<Game>(game));
 
-				fileStream.Flush();
-				streamWriter.Close();
+					fileStream.Flush();
+					streamWriter.Close();
 
-				return game.Id;
+					return game.Id;
+				}
+				catch (IOException ex)
+				{
+					fileStream.Flush();
+					streamWriter.Close();
+
+					throw new IOException(ex.Message);
+				}
 			}
-			catch (IOException ex)
+			else
 			{
-				fileStream.Flush();
-				streamWriter.Close();
-
-				throw new IOException(ex.Message);
+				throw new Exception($"Não foi possível adicionar o jogo '{game.Name}', pois o identificador '{game.Id}' já existe na base de dados.");
 			}
 		}
 
-		public void Update(Game game)
+		public bool Update(Game game)
 		{
 			FileStream fileStream = null;
 			StreamWriter streamWriter = null;
@@ -186,6 +195,7 @@ namespace GameCatalog.Repository
 			}
 
 			if (canBeUpdate)
+			{
 				try
 				{
 					fileStream = new(_path, FileMode.Truncate, FileAccess.Write);
@@ -196,6 +206,8 @@ namespace GameCatalog.Repository
 
 					fileStream.Flush();
 					streamWriter.Close();
+
+					return canBeUpdate;
 				}
 				catch (Exception ex)
 				{
@@ -204,6 +216,11 @@ namespace GameCatalog.Repository
 
 					throw new IOException(ex.Message);
 				}
+			}
+			else
+			{
+				return canBeUpdate;
+			}
 		}
 	}
 }
