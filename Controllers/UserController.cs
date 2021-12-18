@@ -127,7 +127,7 @@ namespace GameCatalog.Controllers
 						return Ok(new
 						{
 							Success = true,
-							Message = $"O usuário {user.Name} foi atualizado com sucesso.",
+							Message = $"O usuário de ID {user.Id} foi atualizado com sucesso.",
 							Id = user.Id
 						});
 					}
@@ -136,7 +136,7 @@ namespace GameCatalog.Controllers
 						return BadRequest(new
 						{
 							Success = false,
-							Message = $"Não foi possível atualizar o título '{user.Name}'. Verifique as informações corretamente.",
+							Message = $"Não foi possível atualizar o usuário '{user.Name}'. Verifique as informações corretamente.",
 							Id = user.Id
 						});
 					}

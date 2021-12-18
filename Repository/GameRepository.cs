@@ -12,7 +12,7 @@ namespace GameCatalog.Repository
 {
 	public class GameRepository : IGameRepository
 	{
-		private readonly string _filePath = "/Game.bin";
+		private readonly string _filePath = "/Game.data";
 		private readonly string _folderPath;
 		private readonly string _path;
 
@@ -183,18 +183,18 @@ namespace GameCatalog.Repository
 			FileStream fileStream = null;
 			StreamWriter streamWriter = null;
 			List<Game> gameList = GetAll();
-			bool canBeUpdate = false;
+			bool canBeUpdated = false;
 
 			for (int index = 0; index < gameList.Count; index++)
 			{
 				if (gameList[index].Id == game.Id)
 				{
 					gameList[index] = game;
-					canBeUpdate = true;
+					canBeUpdated = true;
 				}
 			}
 
-			if (canBeUpdate)
+			if (canBeUpdated)
 			{
 				try
 				{
@@ -207,7 +207,7 @@ namespace GameCatalog.Repository
 					fileStream.Flush();
 					streamWriter.Close();
 
-					return canBeUpdate;
+					return canBeUpdated;
 				}
 				catch (Exception ex)
 				{
@@ -219,7 +219,7 @@ namespace GameCatalog.Repository
 			}
 			else
 			{
-				return canBeUpdate;
+				return canBeUpdated;
 			}
 		}
 	}

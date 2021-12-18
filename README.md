@@ -6,6 +6,8 @@ Esta API foi desenvolvida pra a disciplina **Desenvolvimento de Software Para We
 - Não possui persistência de dados em Base de Dados (SQLServer, PostgreSQL, MongoDB, etc).
 - Não possui **criptografia** em *senhas de usuários*, ou seja, não mantém a ***confidencialidade*** dos dados do usuário cadastrado.
 - Não possui políticas de restrição para o CORS, ou seja, qualquer header, origin ou credential pode se utilizar dos recursos da API.
+- Impossibilidade de criar novo jogo com o mesmo ID.
+- Imposibilidade de criar um usuário com o mesmo endereço de e-mail.
 
 ## Features
 - A API possui as funcionalidades básicas de **criação, leitura, atualização e remoção** de dados (**CRUD**).
@@ -67,13 +69,13 @@ Json de atualização:
 ---
 ### User (Usuário)
 Propriedades:
-| Nome da Propriedade | Tipo   | Descrição                            |
-|---------------------|--------|--------------------------------------|
-| Id                  |  int     | Identificador único                |
-| Name                |  string  | Nome do usuário                    |
-| Email               |  string  | E-mail de identificação do usuário |
-| Password            |  string  | Senha de acesso do usuário         |
-| CreationDate        | DateTime | Data de Cadastro do usuário        |
+| Nome da Propriedade | Tipo   | Descrição                            |  Necessidade  |
+|---------------------|--------|--------------------------------------|---------------|
+| Id                  |  int     | Identificador único                |   Opcional    |
+| Name                |  string  | Nome do usuário                    |  Obrigatório  |
+| Email               |  string  | E-mail de identificação do usuário |  Obrigatório  |
+| Password            |  string  | Senha de acesso do usuário         |  Obrigatório  |
+| CreationDate        | DateTime | Data de Cadastro do usuário        |   Opcional    |
 ---
 Json de geração:
 ~~~json

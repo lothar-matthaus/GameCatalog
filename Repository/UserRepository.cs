@@ -11,7 +11,7 @@ namespace GameCatalog.Repository
 {
 	public class UserRepository : IUserRepository
 	{
-		private readonly string _filePath = "/User.bin";
+		private readonly string _filePath = "/User.data";
 		private readonly string _folderPath;
 		private readonly string _path;
 

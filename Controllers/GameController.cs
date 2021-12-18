@@ -162,7 +162,7 @@ namespace GameCatalog.Controllers
 					return Ok(new
 					{
 						Success = true,
-						Message = $"O jogo foi {game.Name} cadastrado com sucesso.",
+						Message = $"O jogo foi '{game.Name}' cadastrado com sucesso.",
 						Id = game.Id
 					});
 				}
