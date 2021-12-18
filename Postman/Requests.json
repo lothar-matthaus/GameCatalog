@@ -1,0 +1,311 @@
+{
+	"info": {
+		"_postman_id": "a7e7b347-34ed-4bce-83b6-e1b4a62dcebe",
+		"name": "GameCatalog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetAllGames",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Game",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Game"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetGameById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Game/GetById/?id=578732",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Game",
+						"GetById",
+						""
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "578732"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "NewGame",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2Mzk4NjYxODQsImV4cCI6MTYzOTg2NzY4NCwiaWF0IjoxNjM5ODY2MTg0LCJpc3MiOiJEU1ciLCJhdWQiOiJEU1cifQ.Tg4SAid-09GT2Awe8ftNTlvfvd2sXd3XJ-l0b7bMmCU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 578732,\r\n    \"name\": \"The Lord of the Rings: The Battle for Middle-earth\",\r\n    \"description\": \"Battle for Middle-Earth é um jogo de estratégia para PC, baseada na trilogia cinematográfica de O Senhor dos Anéis produzida e dirigida por Peter Jackson - da qual a Electronic Arts detém os direitos de adaptação.\",\r\n    \"coverImgUrl\": \"https://www.mobygames.com/images/covers/l/87124-the-lord-of-the-rings-the-battle-for-middle-earth-windows-front-cover.jpg\",\r\n    \"slideImgUrl\": [\r\n        \"https://i.ytimg.com/vi/aPV6mlVQvWc/maxresdefault.jpg\",\r\n        \"https://www.gry-online.pl/galeria/html/pliki/41883906.jpg\",\r\n        \"https://i.ytimg.com/vi/J-TpXyo-Bs8/maxresdefault.jpg\"\r\n    ],\r\n    \"categories\": [\r\n        \"Jogo eletrônico para um jogador\",\r\n        \"Jogo eletrônico para multijogador\"\r\n    ],\r\n    \"creationDate\": \"2022-12-12T16:00:00\",\r\n    \"releaseDate\": \"2004-12-06T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Game",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Game"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateGame",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2MzkzNTc4MTUsImV4cCI6MTYzOTM1OTMxNSwiaWF0IjoxNjM5MzU3ODE1LCJpc3MiOiJEU1ciLCJhdWQiOiJEU1cifQ.5vGOunrj3s8NHe4llvVvOOHVRwTI1ips5e01i5xgqAA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 578732,\r\n    \"name\": \"The Lord of the Rings: The Battle for Middle-earth\",\r\n    \"description\": \"Battle for Middle-Earth é um jogo de estratégia para PC, baseada na trilogia cinematográfica de O Senhor dos Anéis produzida e dirigida por Peter Jackson - da qual a Electronic Arts detém os direitos de adaptação.\",\r\n    \"coverImgUrl\": \"https://www.mobygames.com/images/covers/l/87124-the-lord-of-the-rings-the-battle-for-middle-earth-windows-front-cover.jpg\",\r\n    \"slideImgUrl\": [\r\n        \"https://i.ytimg.com/vi/aPV6mlVQvWc/maxresdefault.jpg\",\r\n        \"https://www.gry-online.pl/galeria/html/pliki/41883906.jpg\",\r\n        \"https://i.ytimg.com/vi/J-TpXyo-Bs8/maxresdefault.jpg\"\r\n    ],\r\n    \"categories\": [\r\n        \"Jogo eletrônico para um jogador\",\r\n        \"Jogo eletrônico para multijogador\"\r\n    ],\r\n    \"creationDate\": \"2022-12-12T16:00:00\",\r\n    \"releaseDate\": \"2004-12-06T00:00:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/Game/Update",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Game",
+						"Update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DeleteGame",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2MzkzNTc4MTUsImV4cCI6MTYzOTM1OTMxNSwiaWF0IjoxNjM5MzU3ODE1LCJpc3MiOiJEU1ciLCJhdWQiOiJEU1cifQ.5vGOunrj3s8NHe4llvVvOOHVRwTI1ips5e01i5xgqAA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://localhost:5001/api/Game/Delete?id=578732",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"Game",
+						"Delete"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "578732"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignIn",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"bruno.honorato@ufc.br\",\r\n  \"password\": \"##@$m889xx10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/User/Login",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"User",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SignUp",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Bruno Honorato\",\r\n  \"email\": \"bruno.honorato@ufc.br\",\r\n  \"password\": \"##@$m889xx10\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/User",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"User"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetUserNameByEmail",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"string\",\r\n  \"email\": \"user@example.com\",\r\n  \"password\": \"string\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/User/GetByEmail?email=lotmatt@gmail.com",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"User",
+						"GetByEmail"
+					],
+					"query": [
+						{
+							"key": "email",
+							"value": "lotmatt@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "UpdateUser",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYmYiOjE2Mzk4NjYxODQsImV4cCI6MTYzOTg2NzY4NCwiaWF0IjoxNjM5ODY2MTg0LCJpc3MiOiJEU1ciLCJhdWQiOiJEU1cifQ.Tg4SAid-09GT2Awe8ftNTlvfvd2sXd3XJ-l0b7bMmCU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 488566,\r\n    \"name\": \"Bruno da Silva\",\r\n    \"email\": \"bruno.honorato@ufc.br\",\r\n    \"password\": \"safari>chrome123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:5001/api/User/Update",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "5001",
+					"path": [
+						"api",
+						"User",
+						"Update"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -67,6 +67,13 @@ Json de atualização:
 }
 ~~~
 ---
+### Rotas
+> https://localhost:5001/api/Game -- GET
+> https://localhost:5001/api/Game/GetById/?id=578732 -- GET
+> https://localhost:5001/api/Game -- POST
+> https://localhost:5001/api/Game/Update -- PATCH
+> https://localhost:5001/api/Game/Delete?id=578732 -- DELETE
+---
 ### User (Usuário)
 Propriedades:
 | Nome da Propriedade | Tipo   | Descrição                            |  Necessidade  |
@@ -98,6 +105,13 @@ Jsom de atualização
   "creationDate": "2021-12-13T01:32:30.371Z"
 }
 ~~~
+---
+### Rotas
+> https://localhost:5001/api/User/Login -- POST
+> https://localhost:5001/api/User -- POST
+> https://localhost:5001/api/User/GetByEmail?email=user@email.com -- GET
+> https://localhost:5001/api/User/Update -- PATCH
+---
 
 # Funcionamento
 O funcionamento da API é simples e direto. Há uma necessidade de se estar cadastrado no sistema para poder se utilizar dos métodos **POST, PATCH e DELETE**.
