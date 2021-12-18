@@ -52,26 +52,30 @@ Json de geração:
 Json de atualização:
 ~~~json
 {
-  "id": 0,
-  "name": "string",
-  "description": "string",
+  "id": 1,
+  "name": "string2",
+  "description": "string2",
   "categories": [
-    "string"
+    "string2"
   ],
-  "coverImgUrl": "string",
+  "coverImgUrl": "string2",
   "slideImgUrl": [
-    "string"
+    "string2"
   ],
-  "releaseDate": "2021-12-13T01:31:43.851Z",
-  "creationDate": "2021-12-13T01:31:43.851Z"
+  "releaseDate": "2021-12-14T01:31:43.851Z",
+  "creationDate": "2021-12-14T01:31:43.851Z"
 }
 ~~~
 ---
 ### Rotas
 > https://localhost:5001/api/Game -- GET
+
 > https://localhost:5001/api/Game/GetById/?id=578732 -- GET
+
 > https://localhost:5001/api/Game -- POST
+
 > https://localhost:5001/api/Game/Update -- PATCH
+
 > https://localhost:5001/api/Game/Delete?id=578732 -- DELETE
 ---
 ### User (Usuário)
@@ -98,18 +102,21 @@ Json de geração:
 Jsom de atualização
 ~~~json
 {
-  "id": 0,
-  "name": "string",
-  "email": "user@example.com",
-  "password": "string",
-  "creationDate": "2021-12-13T01:32:30.371Z"
+  "id": 1,
+  "name": "string2",
+  "email": "user1@example.com",
+  "password": "string2",
+  "creationDate": "2022-12-13T01:32:30.371Z"
 }
 ~~~
 ---
 ### Rotas
 > https://localhost:5001/api/User/Login -- POST
+
 > https://localhost:5001/api/User -- POST
+
 > https://localhost:5001/api/User/GetByEmail?email=user@email.com -- GET
+
 > https://localhost:5001/api/User/Update -- PATCH
 ---
 
